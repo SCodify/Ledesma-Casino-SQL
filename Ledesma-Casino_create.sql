@@ -6,19 +6,24 @@ USE DB_vitacora;
 
 CREATE TABLE IF NOT EXISTS DB_vitacora.Turnos (
 	id_turno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    turno VARCHAR(30),
-    fecha_turno DATE NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	fecha_turno DATE NOT NULL,
+    id_tipo_turno INT,
 	id_novedad INT,
     id_tarea INT,
     id_control INT,
     id_tecnico INT
 );
 
+CREATE TABLE IF NOT EXISTS DB_vitacora.Tipo_turnos (
+	id_tipo_turno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    turno VARCHAR(30)
+);
+
 ############################################################
 
 CREATE TABLE IF NOT EXISTS DB_vitacora.Novedades (
 	id_novedad INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(30),
+    titulo VARCHAR(50),
     descripcion VARCHAR(5000),
     id_tipo INT,
     id_estado INT,
@@ -133,6 +138,11 @@ CREATE TABLE IF NOT EXISTS DB_vitacora.Sacl_detalles (
 );
 
 ############################################################
+
+ALTER TABLE Turnos
+ADD CONSTRAINT fk_tipo_turnos 
+FOREIGN KEY (id_tipo_turno)
+REFERENCES Tipo_turnos (id_tipo_turno);
 
 ALTER TABLE Turnos
 ADD CONSTRAINT fk_turnos_novedades 
