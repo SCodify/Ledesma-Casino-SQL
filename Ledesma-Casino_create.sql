@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS DB_vitacora.Tipo_turnos (
 
 CREATE TABLE IF NOT EXISTS DB_vitacora.Novedades (
 	id_novedad INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(50),
+    titulo VARCHAR(500),
     descripcion VARCHAR(5000),
+    fecha_apertura_novedad DATE NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     id_tipo INT,
     id_estado INT,
     id_tecnico INT
@@ -67,7 +68,7 @@ CREATE TABLE IF NOT EXISTS DB_vitacora.Tecnicos (
 
 CREATE TABLE IF NOT EXISTS DB_vitacora.Estados_tecnico (
 	id_estado INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    estado TINYINT DEFAULT 1
+    estado VARCHAR(30)
 );
 
 CREATE TABLE IF NOT EXISTS DB_vitacora.Tipos_tecnico (
